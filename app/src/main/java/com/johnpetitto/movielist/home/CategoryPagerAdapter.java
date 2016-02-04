@@ -1,20 +1,21 @@
 package com.johnpetitto.movielist.home;
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import com.johnpetitto.movielist.R;
+import com.johnpetitto.movielist.movies.MovieList;
 import java.util.List;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class CategoryPagerAdapter extends PagerAdapter {
-  private Context context;
+  private HomePresenter presenter;
   private List<Category> categories;
 
-  public CategoryPagerAdapter(Context context, List<Category> categories) {
-    this.context = context;
+  public CategoryPagerAdapter(HomePresenter presenter, List<Category> categories) {
+    this.presenter = presenter;
     this.categories = categories;
   }
 
@@ -23,12 +24,16 @@ public class CategoryPagerAdapter extends PagerAdapter {
   }
 
   @Override public Object instantiateItem(ViewGroup container, int position) {
-    LayoutInflater inflater = LayoutInflater.from(context);
-    View layout = inflater.inflate(R.layout.list_category, container, false);
-    TextView name = (TextView) layout.findViewById(R.id.name);
-    name.setText(categories.get(position).getName());
-    container.addView(layout);
-    return layout;
+    LayoutInflater inflater = LayoutInflater.from(container.getContext());
+    MovieList movieList = (MovieList) inflater.inflate(R.layout.list_movie, container, false);
+    container.addView(movieList);
+
+    presenter.getMovies(categories.get(position))
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(movieList::addMovie);
+
+    return movieList;
   }
 
   @Override public void destroyItem(ViewGroup container, int position, Object object) {
