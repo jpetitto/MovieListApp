@@ -14,7 +14,7 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
   }
 
   @Override public Fragment getItem(int position) {
-    return new Fragment();
+    return CategoryListFragment.newInstance(categories.get(position).getName());
   }
 
   @Override public int getCount() {
