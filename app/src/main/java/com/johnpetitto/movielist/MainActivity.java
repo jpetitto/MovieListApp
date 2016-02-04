@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void initTabs(List<Category> categories) {
-    categoryPager.setAdapter(new CategoryPagerAdapter(getSupportFragmentManager(), categories));
+    categoryPager.setAdapter(new CategoryPagerAdapter(this, categories));
     categoryTabs.setupWithViewPager(categoryPager);
   }
 }
