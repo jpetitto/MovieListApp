@@ -4,8 +4,13 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
-public class MovieList extends RecyclerView {
+public class MovieList extends RecyclerView implements MovieView {
+  private MovieListAdapter adapter;
+
   public MovieList(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
@@ -17,11 +22,13 @@ public class MovieList extends RecyclerView {
     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
     setLayoutManager(layoutManager);
 
-    MovieListAdapter adapter = new MovieListAdapter();
+    adapter = new MovieListAdapter();
     setAdapter(adapter);
   }
 
-  public void addMovie(Movie movie) {
-    ((MovieListAdapter) getAdapter()).addMovie(movie);
+  @Override public void addMovies(Observable<Movie> movies) {
+    movies.subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(adapter::addMovie);
   }
 }

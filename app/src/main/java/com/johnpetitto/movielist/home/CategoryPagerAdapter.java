@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import com.johnpetitto.movielist.R;
 import com.johnpetitto.movielist.movies.MovieList;
 import java.util.List;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class CategoryPagerAdapter extends PagerAdapter {
   private HomePresenter presenter;
@@ -28,10 +26,7 @@ public class CategoryPagerAdapter extends PagerAdapter {
     MovieList movieList = (MovieList) inflater.inflate(R.layout.list_movie, container, false);
     container.addView(movieList);
 
-    presenter.getMovies(categories.get(position))
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(movieList::addMovie);
+    movieList.addMovies(presenter.getMovies(categories.get(position)));
 
     return movieList;
   }
