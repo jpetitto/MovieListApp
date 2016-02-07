@@ -8,9 +8,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.johnpetitto.movielist.home.Category;
 import com.johnpetitto.movielist.home.CategoryPagerAdapter;
+import com.johnpetitto.movielist.home.HomeInteractor;
+import com.johnpetitto.movielist.home.HomeInteractorImpl;
 import com.johnpetitto.movielist.home.HomePresenter;
 import com.johnpetitto.movielist.home.HomePresenterImpl;
 import java.util.List;
+import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -29,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
       getSupportActionBar().setElevation(0);
     }
 
-    presenter = new HomePresenterImpl();
+    Retrofit retrofit = ((MovieListApp) getApplication()).getRetrofitInstance();
+    HomeInteractor interactor = new HomeInteractorImpl(retrofit);
+    presenter = new HomePresenterImpl(interactor);
 
     presenter.getMovieCategories()
-        .toList()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this::initTabs);

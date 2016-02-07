@@ -1,19 +1,18 @@
 package com.johnpetitto.movielist.home;
 
 import com.johnpetitto.movielist.movies.Movie;
+import java.util.List;
 import rx.Observable;
 
 public class HomePresenterImpl implements HomePresenter {
-  @Override public Observable<Category> getMovieCategories() {
-    Category[] categories = new Category[] {
-        new Category("Drama"),
-        new Category("Action"),
-        new Category("Comedy"),
-        new Category("Horror"),
-        new Category("Western")
-    };
+  private HomeInteractor interactor;
 
-    return Observable.from(categories);
+  public HomePresenterImpl(HomeInteractor interactor) {
+    this.interactor = interactor;
+  }
+
+  @Override public Observable<List<Category>> getMovieCategories() {
+    return interactor.getMovieCategories();
   }
 
   @Override public Observable<Movie> getMovies(Category category) {
