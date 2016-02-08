@@ -5,6 +5,6 @@ import java.util.List;
 import rx.Observable;
 
 public interface HomeInteractor {
-  Observable<List<Category>> getMovieCategories();
-  Observable<Movie> getMovies(Category category);
+  Observable<List<Genre>> getGenres();
+  Observable<Movie> getMovies(Genre genre);
 }

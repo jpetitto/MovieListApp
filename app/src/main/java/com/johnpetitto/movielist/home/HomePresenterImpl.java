@@ -11,20 +11,11 @@ public class HomePresenterImpl implements HomePresenter {
     this.interactor = interactor;
   }
 
-  @Override public Observable<List<Category>> getMovieCategories() {
-    return interactor.getMovieCategories();
+  @Override public Observable<List<Genre>> getGenres() {
+    return interactor.getGenres();
   }
 
-  @Override public Observable<Movie> getMovies(Category category) {
-    Movie[] movies = new Movie[] {
-        new Movie("Reservoir Dogs"),
-        new Movie("Pulp Fiction"),
-        new Movie("Jackie Brown"),
-        new Movie("Kill Bill"),
-        new Movie("Inglorious Bastards"),
-        new Movie("Django Unchained")
-    };
-
-    return Observable.from(movies);
+  @Override public Observable<Movie> getMovies(Genre genre) {
+    return interactor.getMovies(genre);
   }
 }

@@ -8,17 +8,17 @@ import com.johnpetitto.movielist.R;
 import com.johnpetitto.movielist.movies.MovieList;
 import java.util.List;
 
-public class CategoryPagerAdapter extends PagerAdapter {
+public class GenrePagerAdapter extends PagerAdapter {
   private HomePresenter presenter;
-  private List<Category> categories;
+  private List<Genre> genres;
 
-  public CategoryPagerAdapter(HomePresenter presenter, List<Category> categories) {
+  public GenrePagerAdapter(HomePresenter presenter, List<Genre> genres) {
     this.presenter = presenter;
-    this.categories = categories;
+    this.genres = genres;
   }
 
   @Override public int getCount() {
-    return categories.size();
+    return genres.size();
   }
 
   @Override public Object instantiateItem(ViewGroup container, int position) {
@@ -26,7 +26,7 @@ public class CategoryPagerAdapter extends PagerAdapter {
     MovieList movieList = (MovieList) inflater.inflate(R.layout.list_movie, container, false);
     container.addView(movieList);
 
-    movieList.addMovies(presenter.getMovies(categories.get(position)));
+    movieList.addMovies(presenter.getMovies(genres.get(position)));
 
     return movieList;
   }
@@ -40,6 +40,6 @@ public class CategoryPagerAdapter extends PagerAdapter {
   }
 
   @Override public CharSequence getPageTitle(int position) {
-    return categories.get(position).getName();
+    return genres.get(position).getName();
   }
 }

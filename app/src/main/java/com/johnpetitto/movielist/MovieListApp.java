@@ -1,6 +1,8 @@
 package com.johnpetitto.movielist;
 
 import android.app.Application;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.johnpetitto.movielist.network.ApiKeyInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -23,10 +25,12 @@ public class MovieListApp extends Application {
         .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build();
 
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
     retrofit = new Retrofit.Builder()
         .baseUrl("https://api.themoviedb.org/3/")
         .client(httpClient)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .build();
   }

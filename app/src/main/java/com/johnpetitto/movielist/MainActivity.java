@@ -6,8 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.johnpetitto.movielist.home.Category;
-import com.johnpetitto.movielist.home.CategoryPagerAdapter;
+import com.johnpetitto.movielist.home.Genre;
+import com.johnpetitto.movielist.home.GenrePagerAdapter;
 import com.johnpetitto.movielist.home.HomeInteractor;
 import com.johnpetitto.movielist.home.HomeInteractorImpl;
 import com.johnpetitto.movielist.home.HomePresenter;
@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
     HomeInteractor interactor = new HomeInteractorImpl(retrofit);
     presenter = new HomePresenterImpl(interactor);
 
-    presenter.getMovieCategories()
+    presenter.getGenres()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this::initTabs);
   }
 
-  private void initTabs(List<Category> categories) {
-    categoryPager.setAdapter(new CategoryPagerAdapter(presenter, categories));
+  private void initTabs(List<Genre> genres) {
+    categoryPager.setAdapter(new GenrePagerAdapter(presenter, genres));
     categoryTabs.setupWithViewPager(categoryPager);
   }
 }
