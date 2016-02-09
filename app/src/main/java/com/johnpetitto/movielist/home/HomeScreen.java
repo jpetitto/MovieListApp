@@ -1,13 +1,10 @@
 package com.johnpetitto.movielist.home;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.content.Context;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.johnpetitto.movielist.MovieListApp;
@@ -17,23 +14,22 @@ import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class HomeFragment extends Fragment implements HomeView {
+public class HomeScreen extends LinearLayout implements HomeView {
   @Bind(R.id.category_tabs) TabLayout categoryTabs;
   @Bind(R.id.category_pager) ViewPager categoryPager;
 
   private HomePresenter presenter;
 
-  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.screen_home, container, false);
-    ButterKnife.bind(this, view);
-    return view;
+  public HomeScreen(Context context, AttributeSet attrs) {
+    super(context, attrs);
   }
 
-  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
+  @Override protected void onFinishInflate() {
+    super.onFinishInflate();
+    ButterKnife.bind(this);
 
-    Retrofit retrofit = ((MovieListApp) getActivity().getApplication()).getRetrofitInstance();
+    MovieListApp app = (MovieListApp) getContext().getApplicationContext();
+    Retrofit retrofit = app.getRetrofitInstance();
     HomeInteractor interactor = new HomeInteractorImpl(retrofit);
     presenter = new HomePresenterImpl(interactor);
 

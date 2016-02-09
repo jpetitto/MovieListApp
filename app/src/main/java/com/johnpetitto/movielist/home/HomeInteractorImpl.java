@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import rx.Observable;
 
 public class HomeInteractorImpl implements HomeInteractor {
-  private static final String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w780";
+  private static final String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w300";
 
   private Retrofit retrofit;
 

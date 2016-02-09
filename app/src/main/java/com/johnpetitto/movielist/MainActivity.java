@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.johnpetitto.movielist.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
   @Bind(R.id.toolbar) Toolbar toolbar;
+  @Bind(R.id.container) FrameLayout container;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -20,10 +21,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
     toolbar.inflateMenu(R.menu.main);
     toolbar.setOnMenuItemClickListener(this);
 
-    getSupportFragmentManager()
-        .beginTransaction()
-        .replace(R.id.container, new HomeFragment())
-        .commit();
+    getLayoutInflater().inflate(R.layout.screen_home, container);
   }
 
   @Override public boolean onMenuItemClick(MenuItem item) {
