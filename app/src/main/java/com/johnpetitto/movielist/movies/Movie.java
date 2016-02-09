@@ -7,7 +7,7 @@ public class Movie {
   private int id;
   private String overview;
   @SerializedName("release_date") private Date releaseDate;
-  @SerializedName("poster_path") private String image;
+  @SerializedName("backdrop_path") private String image;
   private double popularity;
   private String title;
 

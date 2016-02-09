@@ -11,6 +11,8 @@ import butterknife.ButterKnife;
 import com.johnpetitto.movielist.R;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
@@ -30,6 +32,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
   @Override public void onBindViewHolder(MovieViewHolder holder, int position) {
     Movie movie = movies.get(position);
     holder.title.setText(movie.getTitle());
+    holder.year.setText(getYear(movie.getReleaseDate()));
     Picasso.with(holder.image.getContext()).load(movie.getImage()).into(holder.image);
   }
 
@@ -38,12 +41,20 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
   }
 
   public static class MovieViewHolder extends RecyclerView.ViewHolder {
-    @Bind(R.id.title) TextView title;
     @Bind(R.id.image) ImageView image;
+    @Bind(R.id.title) TextView title;
+    @Bind(R.id.year) TextView year;
 
     public MovieViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
     }
+  }
+
+  // TODO: move this logic out of view
+  private String getYear(Date date) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    return Integer.toString(calendar.get(Calendar.YEAR));
   }
 }
