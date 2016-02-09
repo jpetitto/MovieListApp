@@ -1,7 +1,7 @@
 <resources>
 
   <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <!-- Customize your theme here. -->
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -12,6 +12,23 @@
     <item name="cardCornerRadius">2dp</item>
     <item name="cardElevation">2dp</item>
     <item name="cardBackgroundColor">@color/colorPrimary</item>
+  </style>
+
+  <style name="ToolbarTextAppearance">
+    <item name="android:textColor">@android:color/white</item>
+  </style>
+
+  <style name="ToolbarTextAppearance.Title">
+    <item name="android:textSize">20sp</item>
+  </style>
+
+  <style name="ToolbarTextAppearance.Subtitle">
+    <item name="android:textSize">14sp</item>
+  </style>
+
+  <style name="AppToolbar">
+    <item name="theme">@style/ThemeOverlay.AppCompat.Dark</item>
+    <item name="android:background">?colorPrimary</item>
   </style>
 
 </resources>

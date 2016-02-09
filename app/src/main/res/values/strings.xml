@@ -1,6 +1,10 @@
 <resources>
   <string name="app_name">MovieList</string>
 
+  <!-- toolbar main actions -->
+  <string name="action_lists">Lists</string>
+  <string name="action_search">Search</string>
+
   <!-- content descriptions -->
   <string name="movie_image_desc">Movie Backdrop</string>
 </resources>

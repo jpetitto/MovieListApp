@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.johnpetitto.movielist.R;
@@ -34,6 +35,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     holder.title.setText(movie.getTitle());
     holder.year.setText(getYear(movie.getReleaseDate()));
     Picasso.with(holder.image.getContext()).load(movie.getImage()).into(holder.image);
+
+    holder.itemView.setOnClickListener(v ->
+        Toast.makeText(holder.itemView.getContext(), movie.getTitle(), Toast.LENGTH_SHORT).show());
   }
 
   @Override public int getItemCount() {
