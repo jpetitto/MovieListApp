@@ -34,7 +34,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     Movie movie = movies.get(position);
     holder.title.setText(movie.getTitle());
     holder.year.setText(getYear(movie.getReleaseDate()));
-    Picasso.with(holder.image.getContext()).load(movie.getImage()).into(holder.image);
+
+    Picasso.with(holder.image.getContext())
+        .load(movie.getImage())
+        .fit()
+        .into(holder.image);
 
     holder.itemView.setOnClickListener(v ->
         Toast.makeText(holder.itemView.getContext(), movie.getTitle(), Toast.LENGTH_SHORT).show());
