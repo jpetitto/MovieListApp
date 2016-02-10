@@ -1,6 +1,7 @@
 package com.johnpetitto.movielist.movies;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,6 @@ import butterknife.ButterKnife;
 import com.johnpetitto.movielist.R;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
@@ -33,7 +32,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
   @Override public void onBindViewHolder(MovieViewHolder holder, int position) {
     Movie movie = movies.get(position);
     holder.title.setText(movie.getTitle());
-    holder.year.setText(getYear(movie.getReleaseDate()));
+    holder.year.setText(DateFormat.format("yyyy", movie.getReleaseDate()));
 
     Picasso.with(holder.image.getContext())
         .load(movie.getImage())
@@ -57,12 +56,5 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
       super(itemView);
       ButterKnife.bind(this, itemView);
     }
-  }
-
-  // TODO: move this logic out of view
-  private String getYear(Date date) {
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTime(date);
-    return Integer.toString(calendar.get(Calendar.YEAR));
   }
 }
