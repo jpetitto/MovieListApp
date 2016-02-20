@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.johnpetitto.movielist.Navigator;
 import com.johnpetitto.movielist.R;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
@@ -39,8 +39,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         .fit()
         .into(holder.image);
 
-    holder.itemView.setOnClickListener(v ->
-        Toast.makeText(holder.itemView.getContext(), movie.getTitle(), Toast.LENGTH_SHORT).show());
+    holder.itemView.setOnClickListener(v -> Navigator.setTransition(movie));
   }
 
   @Override public int getItemCount() {

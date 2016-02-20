@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.johnpetitto.movielist.home.HomeScreen
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/window_background">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?colorPrimary"
+        android:theme="@style/AppToolbar"
+        app:title="@string/app_name"
+        app:titleTextAppearance="@style/ToolbarTextAppearance.Title" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/category_tabs"
@@ -20,4 +30,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</com.johnpetitto.movielist.home.HomeScreen>
+</LinearLayout>
