@@ -5,37 +5,41 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.johnpetitto.movielist.MovieListApp;
 import com.johnpetitto.movielist.R;
 import java.util.List;
+import me.mattlogan.library.ViewFactory;
 import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class HomeScreen extends FrameLayout implements HomeView, Toolbar.OnMenuItemClickListener {
+public class HomeScreen extends LinearLayout implements HomeView, Toolbar.OnMenuItemClickListener {
   @Bind(R.id.toolbar) Toolbar toolbar;
   @Bind(R.id.category_tabs) TabLayout categoryTabs;
   @Bind(R.id.category_pager) ViewPager categoryPager;
 
   private HomePresenter presenter;
 
-  public HomeScreen(Context context) {
-    super(context);
-    init();
+  public static class Factory implements ViewFactory {
+    @Override public View createView(Context context, ViewGroup container) {
+      return LayoutInflater.from(context).inflate(R.layout.screen_home, container, false);
+    }
   }
 
   public HomeScreen(Context context, AttributeSet attrs) {
     super(context, attrs);
-    init();
   }
 
-  private void init() {
-    inflate(getContext(), R.layout.screen_home, this);
+  @Override protected void onFinishInflate() {
+    super.onFinishInflate();
     ButterKnife.bind(this);
 
     toolbar.inflateMenu(R.menu.main);
