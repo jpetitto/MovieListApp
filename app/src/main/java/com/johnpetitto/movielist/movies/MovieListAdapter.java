@@ -37,6 +37,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     Picasso.with(holder.image.getContext())
         .load(movie.getImage())
         .fit()
+        .centerCrop()
         .into(holder.image);
 
     holder.itemView.setOnClickListener(v -> Navigator.setTransition(movie));
