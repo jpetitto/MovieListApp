@@ -25,22 +25,26 @@ android {
 }
 
 dependencies {
-  compile fileTree(include: ['*.jar'], dir: 'libs')
-  testCompile 'junit:junit:4.12'
-  compile 'com.android.support:appcompat-v7:23.2.0'
-  compile 'io.reactivex:rxjava:1.1.0'
-  compile 'com.android.support:design:23.2.0'
-  compile 'com.jakewharton:butterknife:7.0.1'
-  compile 'io.reactivex:rxandroid:1.1.0'
-  compile 'com.jakewharton.timber:timber:4.1.0'
-  compile 'com.android.support:support-v4:23.2.0'
-  compile 'com.android.support:recyclerview-v7:23.2.0'
-  compile 'com.android.support:cardview-v7:23.2.0'
-  compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-  compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
-  compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
-  compile 'com.squareup.picasso:picasso:2.5.2'
-  compile 'me.mattlogan.pancakes:pancakes:3.1.0'
-  compile 'frankiesardo:icepick:3.1.0'
-  provided 'frankiesardo:icepick-processor:3.1.0'
+  compile libraries.supportAppCompat
+  compile libraries.supportDesign
+  compile libraries.supportv4
+  compile libraries.supportRecyclerView
+  compile libraries.supportCardView
+
+  compile libraries.rxJava
+  compile libraries.rxAndroid
+
+  compile libraries.retrofitConverterGson
+  compile libraries.retrofitAdapterRxJava
+  compile libraries.picasso
+
+  compile libraries.butterknife
+  compile libraries.pancakes
+  compile libraries.icepick
+  provided libraries.icepickProcessor
+
+  compile libraries.timber
+  compile libraries.okHttpLoggingInterceptor
+
+  testCompile libraries.junit
 }

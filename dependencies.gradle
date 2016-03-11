@@ -1,0 +1,45 @@
+ext.versions = [
+    supportLibs: '23.2.0',
+    rxJava: '1.1.0',
+    rxAndroid: '1.1.0',
+    retrofit: '2.0.0-beta4',
+    okHttp: '3.0.1',
+    butterknife: '7.0.1',
+    picasso: '2.5.2',
+    timber: '4.1.0',
+    pancakes: '3.1.0',
+    icepick: '3.1.0',
+
+    junit: '4.12'
+]
+
+ext.libraries = [
+    // support libs
+    supportAppCompat: "com.android.support:appcompat-v7:$versions.supportLibs",
+    supportDesign: "com.android.support:design:$versions.supportLibs",
+    supportv4: "com.android.support:support-v4:$versions.supportLibs",
+    supportRecyclerView: "com.android.support:recyclerview-v7:$versions.supportLibs",
+    supportCardView: "com.android.support:cardview-v7:$versions.supportLibs",
+
+    // rx
+    rxJava: "io.reactivex:rxjava:$versions.rxJava",
+    rxAndroid: "io.reactivex:rxandroid:$versions.rxAndroid",
+
+    // networking
+    retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+    retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava:$versions.retrofit",
+    picasso: "com.squareup.picasso:picasso:$versions.picasso",
+
+    // third party android
+    butterknife: "com.jakewharton:butterknife:$versions.butterknife",
+    pancakes: "me.mattlogan.pancakes:pancakes:$versions.pancakes",
+    icepick: "frankiesardo:icepick:$versions.icepick",
+    icepickProcessor: "frankiesardo:icepick-processor:$versions.icepick",
+
+    // logging
+    timber: "com.jakewharton.timber:timber:$versions.timber",
+    okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+
+    // testing
+    junit: "junit:junit:$versions.junit"
+]
