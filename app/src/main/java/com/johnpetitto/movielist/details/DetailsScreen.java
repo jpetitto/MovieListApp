@@ -1,5 +1,6 @@
 package com.johnpetitto.movielist.details;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Parcelable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -49,6 +50,9 @@ public class DetailsScreen extends CoordinatorLayout {
   @Override protected void onFinishInflate() {
     super.onFinishInflate();
     ButterKnife.bind(this);
+
+    toolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
+    toolbar.setNavigationOnClickListener(v -> ((Activity) getContext()).onBackPressed());
   }
 
   public void setMovie(Movie movie) {
@@ -58,7 +62,7 @@ public class DetailsScreen extends CoordinatorLayout {
   }
 
   private void init() {
-    collapsingToolbar.setTitle(movieTitle);
+    toolbar.setTitle(movieTitle);
     Picasso.with(getContext()).load(movieImage).into(backdrop);
   }
 }
