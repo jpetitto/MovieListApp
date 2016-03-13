@@ -1,4 +1,4 @@
-package com.johnpetitto.movielist.home;
+package com.johnpetitto.movielist.genres;
 
 import com.google.gson.annotations.SerializedName;
 import com.johnpetitto.movielist.movies.Movie;

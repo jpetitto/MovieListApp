@@ -1,4 +1,4 @@
-package com.johnpetitto.movielist.home;
+package com.johnpetitto.movielist.genres;
 
 import android.content.Context;
 import android.support.design.widget.TabLayout;
@@ -21,12 +21,12 @@ import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class HomeScreen extends LinearLayout implements HomeView, Toolbar.OnMenuItemClickListener {
+public class GenreScreen extends LinearLayout implements GenreView, Toolbar.OnMenuItemClickListener {
   @Bind(R.id.toolbar) Toolbar toolbar;
   @Bind(R.id.category_tabs) TabLayout categoryTabs;
   @Bind(R.id.category_pager) ViewPager categoryPager;
 
-  private HomePresenter presenter;
+  private GenrePresenter presenter;
 
   public static class Factory implements ViewFactory {
     @Override public View createView(Context context, ViewGroup container) {
@@ -34,7 +34,7 @@ public class HomeScreen extends LinearLayout implements HomeView, Toolbar.OnMenu
     }
   }
 
-  public HomeScreen(Context context, AttributeSet attrs) {
+  public GenreScreen(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
@@ -47,8 +47,8 @@ public class HomeScreen extends LinearLayout implements HomeView, Toolbar.OnMenu
 
     MovieListApp app = (MovieListApp) getContext().getApplicationContext();
     Retrofit retrofit = app.getRetrofitInstance();
-    HomeInteractor interactor = new HomeInteractorImpl(retrofit);
-    presenter = new HomePresenterImpl(interactor);
+    GenreInteractor interactor = new GenreInteractorImpl(retrofit);
+    presenter = new GenrePresenterImpl(interactor);
 
     presenter.getGenres()
         .subscribeOn(Schedulers.io())

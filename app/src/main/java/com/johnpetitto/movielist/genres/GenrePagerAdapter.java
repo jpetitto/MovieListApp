@@ -1,4 +1,4 @@
-package com.johnpetitto.movielist.home;
+package com.johnpetitto.movielist.genres;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -9,10 +9,10 @@ import com.johnpetitto.movielist.movies.MovieList;
 import java.util.List;
 
 public class GenrePagerAdapter extends PagerAdapter {
-  private HomePresenter presenter;
+  private GenrePresenter presenter;
   private List<Genre> genres;
 
-  public GenrePagerAdapter(HomePresenter presenter, List<Genre> genres) {
+  public GenrePagerAdapter(GenrePresenter presenter, List<Genre> genres) {
     this.presenter = presenter;
     this.genres = genres;
   }

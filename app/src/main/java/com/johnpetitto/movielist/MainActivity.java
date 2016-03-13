@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.johnpetitto.movielist.details.DetailsScreen;
-import com.johnpetitto.movielist.home.HomeScreen;
+import com.johnpetitto.movielist.genres.GenreScreen;
 import com.johnpetitto.movielist.movies.Movie;
 import me.mattlogan.library.ViewStack;
 import me.mattlogan.library.ViewStackDelegate;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements ViewStackDelegate
     if (savedInstanceState != null) {
       viewStack.rebuildFromBundle(savedInstanceState, VIEW_STACK_TAG);
     } else {
-      viewStack.push(new HomeScreen.Factory());
+      viewStack.push(new GenreScreen.Factory());
     }
 
     Navigator.getTransitions().subscribe(this::showMovieDetails);

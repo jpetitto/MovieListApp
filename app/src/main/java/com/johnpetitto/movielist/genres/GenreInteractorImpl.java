@@ -1,16 +1,16 @@
-package com.johnpetitto.movielist.home;
+package com.johnpetitto.movielist.genres;
 
 import com.johnpetitto.movielist.movies.Movie;
 import java.util.List;
 import retrofit2.Retrofit;
 import rx.Observable;
 
-public class HomeInteractorImpl implements HomeInteractor {
+public class GenreInteractorImpl implements GenreInteractor {
   private static final String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w780";
 
   private Retrofit retrofit;
 
-  public HomeInteractorImpl(Retrofit retrofit) {
+  public GenreInteractorImpl(Retrofit retrofit) {
     this.retrofit = retrofit;
   }
 

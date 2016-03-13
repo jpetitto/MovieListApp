@@ -1,4 +1,4 @@
-package com.johnpetitto.movielist.home;
+package com.johnpetitto.movielist.genres;
 
 import java.util.List;
 

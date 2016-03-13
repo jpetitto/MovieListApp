@@ -1,4 +1,4 @@
-package com.johnpetitto.movielist.home;
+package com.johnpetitto.movielist.genres;
 
 import retrofit2.Retrofit;
 import retrofit2.http.GET;

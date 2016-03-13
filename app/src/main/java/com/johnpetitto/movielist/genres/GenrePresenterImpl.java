@@ -1,13 +1,13 @@
-package com.johnpetitto.movielist.home;
+package com.johnpetitto.movielist.genres;
 
 import com.johnpetitto.movielist.movies.Movie;
 import java.util.List;
 import rx.Observable;
 
-public class HomePresenterImpl implements HomePresenter {
-  private HomeInteractor interactor;
+public class GenrePresenterImpl implements GenrePresenter {
+  private GenreInteractor interactor;
 
-  public HomePresenterImpl(HomeInteractor interactor) {
+  public GenrePresenterImpl(GenreInteractor interactor) {
     this.interactor = interactor;
   }
 
