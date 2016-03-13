@@ -51,7 +51,7 @@ public class DetailsScreen extends CoordinatorLayout {
     super.onFinishInflate();
     ButterKnife.bind(this);
 
-    toolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
+    toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
     toolbar.setNavigationOnClickListener(v -> ((Activity) getContext()).onBackPressed());
   }
 
