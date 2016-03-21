@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class MovieListApp extends Application {
@@ -31,7 +32,7 @@ public class MovieListApp extends Application {
         .baseUrl("https://api.themoviedb.org/3/")
         .client(httpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build();
   }
 

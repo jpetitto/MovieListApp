@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MovieList extends RecyclerView implements MovieView {
   private MovieListAdapter adapter;
@@ -27,8 +26,6 @@ public class MovieList extends RecyclerView implements MovieView {
   }
 
   @Override public void addMovies(Observable<Movie> movies) {
-    movies.subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(adapter::addMovie);
+    movies.observeOn(AndroidSchedulers.mainThread()).subscribe(adapter::addMovie);
   }
 }

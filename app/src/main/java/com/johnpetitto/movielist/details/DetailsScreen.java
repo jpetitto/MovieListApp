@@ -74,7 +74,6 @@ public class DetailsScreen extends CoordinatorLayout {
     init();
 
     presenter.getMovieDetails(movie.getId())
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this::showMovieDetails);
   }

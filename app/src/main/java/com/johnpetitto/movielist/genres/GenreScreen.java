@@ -19,7 +19,6 @@ import java.util.List;
 import me.mattlogan.library.ViewFactory;
 import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class GenreScreen extends LinearLayout implements GenreView, Toolbar.OnMenuItemClickListener {
   @Bind(R.id.toolbar) Toolbar toolbar;
@@ -51,7 +50,6 @@ public class GenreScreen extends LinearLayout implements GenreView, Toolbar.OnMe
     presenter = new GenrePresenterImpl(interactor);
 
     presenter.getGenres()
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this::initTabs);
   }
