@@ -16,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.johnpetitto.movielist.MovieListApp;
 import com.johnpetitto.movielist.R;
+import com.johnpetitto.movielist.UiUtils;
 import com.johnpetitto.movielist.movies.Movie;
 import com.squareup.picasso.Picasso;
 import icepick.Icepick;
@@ -23,7 +24,6 @@ import icepick.State;
 import me.mattlogan.library.ViewFactory;
 import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class DetailsScreen extends CoordinatorLayout {
   @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbar;
@@ -75,7 +75,7 @@ public class DetailsScreen extends CoordinatorLayout {
 
     presenter.getMovieDetails(movie.getId())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(this::showMovieDetails);
+        .subscribe(this::showMovieDetails, throwable -> UiUtils.showErrorToast(getContext(), throwable));
   }
 
   private void init() {

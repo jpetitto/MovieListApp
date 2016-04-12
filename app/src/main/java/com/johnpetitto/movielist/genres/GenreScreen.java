@@ -15,6 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.johnpetitto.movielist.MovieListApp;
 import com.johnpetitto.movielist.R;
+import com.johnpetitto.movielist.UiUtils;
 import java.util.List;
 import me.mattlogan.library.ViewFactory;
 import retrofit2.Retrofit;
@@ -51,7 +52,7 @@ public class GenreScreen extends LinearLayout implements GenreView, Toolbar.OnMe
 
     presenter.getGenres()
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(this::initTabs);
+        .subscribe(this::initTabs, throwable -> UiUtils.showErrorToast(getContext(), throwable));
   }
 
   private void initTabs(List<Genre> genres) {
